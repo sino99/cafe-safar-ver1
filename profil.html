@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой профиль | SaFar</title>
+    <link rel="stylesheet" href="css/profil.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style type="text/css">@font-face {font-family:Outfit;font-style:normal;font-weight:300;src:url(/cf-fonts/v/outfit/5.0.11/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Outfit;font-style:normal;font-weight:300;src:url(/cf-fonts/v/outfit/5.0.11/latin-ext/wght/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Outfit;font-style:normal;font-weight:400;src:url(/cf-fonts/v/outfit/5.0.11/latin-ext/wght/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Outfit;font-style:normal;font-weight:400;src:url(/cf-fonts/v/outfit/5.0.11/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Outfit;font-style:normal;font-weight:500;src:url(/cf-fonts/v/outfit/5.0.11/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Outfit;font-style:normal;font-weight:500;src:url(/cf-fonts/v/outfit/5.0.11/latin-ext/wght/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Outfit;font-style:normal;font-weight:600;src:url(/cf-fonts/v/outfit/5.0.11/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Outfit;font-style:normal;font-weight:600;src:url(/cf-fonts/v/outfit/5.0.11/latin-ext/wght/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Outfit;font-style:normal;font-weight:700;src:url(/cf-fonts/v/outfit/5.0.11/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Outfit;font-style:normal;font-weight:700;src:url(/cf-fonts/v/outfit/5.0.11/latin-ext/wght/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}</style>
+    <style>
+        :root {
+            --primary: #e74c3c;
+            --primary-dark: #c0392b;
+            --secondary: #3498db;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --gray: #95a5a6;
+        }
+        
+        /* Стили для кода самовывоза */
+        .pickup-code-display {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #e74c3c;
+            background: #ffe6e6;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 5px;
+            display: inline-block;
+            border: 2px dashed #e74c3c;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .pickup-code-display:hover {
+            animation: pulse 1s infinite;
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .copy-success {
+            background: #27ae60 !important;
+            color: white !important;
+            border-color: #219653 !important;
+        }
+        
+        .copy-pickup-code-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            margin-top: 5px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .copy-pickup-code-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        /* Стили для QR-кода */
+        .qr-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .qr-modal-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 300px;
+            width: 90%;
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateY(-30px) scale(0.9); opacity: 0; }
+            to { transform: translateY(0) scale(1); opacity: 1; }
+        }
+        
+        /* Стили для свайпа на мобильных */
+        .swipe-indicator {
+            position: absolute;
+            top: 8px;
+            left: 0;
+            right: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 1;
+        }
+        
+        .swipe-line {
+            width: 40px;
+            height: 4px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 2px;
+            margin-bottom: 4px;
+        }
+        
+        .swipe-hint {
+            font-size: 0.7rem;
+            color: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .modal-container:hover .swipe-hint {
+            opacity: 1;
+        }
+        
+        /* Стили для таймера обратного отсчета */
+        .order-countdown {
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 4px;
+            padding: 4px 8px;
+            border-radius: 10px;
+            background: rgba(52, 152, 219, 0.1);
+            display: inline-block;
+            min-width: 80px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .order-countdown i {
+            font-size: 0.7rem;
+            margin-right: 3px;
+        }
+        
+        .tracking-time-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 10px 0;
+            padding: 8px 12px;
+            background: rgba(52, 152, 219, 0.05);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: #2c3e50;
+        }
+        
+        .tracking-time-info i {
+            color: #3498db;
+        }
+        
+        @keyframes countdown-pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+        
+        .countdown-warning {
+            animation: countdown-pulse 1s infinite;
+        }
+        
+        /* Стили для модального окна с кодом самовывоза */
+        .modal-qr-code {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #e74c3c;
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 8px;
+            margin: 15px 0;
+            user-select: all;
+        }
+        
+        /* Стили для аватара с бейджем */
+        .avatar-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #e74c3c;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- Главный контейнер -->
+    <div class="profile-app">
+        <!-- Мобильный хедер -->
+        <header class="profile-header">
+            <div class="header-left">
+                <a href="/" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <h1>Мой профиль</h1>
+            </div>
+            <div class="header-right">
+                <div class="user-menu">
+                    <div class="user-avatar-small" id="mobileAvatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-item" data-section="orders">
+                            <i class="fas fa-shopping-bag"></i>
+                            <span>Мои заказы</span>
+                        </div>
+                        <div class="dropdown-item" data-section="track">
+                            <i class="fas fa-truck"></i>
+                            <span>Отслеживание</span>
+                            <span class="badge" id="mobileBadge">0</span>
+                        </div>
+                        <div class="dropdown-item" data-section="settings">
+                            <i class="fas fa-cog"></i>
+                            <span>Настройки</span>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <div class="dropdown-item logout" id="mobileLogout">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Выйти</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Секция информации пользователя -->
+        <section class="user-info-section">
+            <div class="user-avatar-large">
+                <i class="fas fa-user-circle"></i>
+            </div>
+            <div class="user-details">
+                <h2 id="userName">Загрузка...</h2>
+                <p id="userPhone" class="user-phone">+992 ...</p>
+                <div class="user-stats">
+                    <div class="stat">
+                        <div class="stat-value" id="totalOrders">0</div>
+                        <div class="stat-label">Заказов</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value" id="totalSpent">0</div>
+                        <div class="stat-label">TJS</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value" id="memberSince">2024</div>
+                        <div class="stat-label">С нами</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Навигационные табы -->
+        <nav class="profile-tabs">
+            <button class="tab-btn active" data-tab="orders">
+                <i class="fas fa-shopping-bag"></i>
+                <span>Заказы</span>
+            </button>
+            <button class="tab-btn" data-tab="track">
+                <i class="fas fa-truck"></i>
+                <span>Отслеживание</span>
+                <span class="tab-badge" id="trackBadge">0</span>
+            </button>
+            <button class="tab-btn" data-tab="settings">
+                <i class="fas fa-cog"></i>
+                <span>Настройки</span>
+            </button>
+        </nav>
+
+        <!-- Контентные секции -->
+        <main class="profile-content">
+            <!-- Секция заказов -->
+            <section id="orders" class="content-section active">
+                <div class="section-header">
+                    <h2><i class="fas fa-history"></i> История заказов</h2>
+                    <button class="icon-btn refresh-btn" id="refreshBtn">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                </div>
+
+                <div class="orders-container" id="ordersList">
+                    <div class="loading-state">
+                        <div class="spinner"></div>
+                        <p>Загружаем ваши заказы...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Секция отслеживания -->
+            <section id="track" class="content-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-truck"></i> Отслеживание</h2>
+                    <div class="live-badge">
+                        <span class="live-dot"></span>
+                        LIVE
+                    </div>
+                </div>
+
+                <div class="tracking-container" id="trackingList">
+                    <div class="empty-state">
+                        <div class="empty-icon">
+                            <i class="fas fa-truck-loading"></i>
+                        </div>
+                        <h3>Нет активных заказов</h3>
+                        <p>Здесь будут отображаться ваши текущие заказы</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Секция настроек -->
+            <section id="settings" class="content-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-user-cog"></i> Настройки аккаунта</h2>
+                </div>
+
+                <div class="settings-container">
+                    <!-- Информация -->
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-id-card"></i>
+                            <h3>Информация</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="info-row">
+                                <span class="info-label">Логин</span>
+                                <span class="info-value" id="displayLogin">...</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Телефон</span>
+                                <span class="info-value" id="displayPhone">...</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Статус</span>
+                                <span class="info-value">
+                                    <span class="status-tag customer">Покупатель</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Смена пароля -->
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fas fa-lock"></i>
+                            <h3>Смена пароля</h3>
+                        </div>
+                        <div class="card-body">
+                            <form id="changePasswordForm" class="password-form">
+                                <div class="form-group">
+                                    <label for="oldPassword">Старый пароль</label>
+                                    <div class="input-with-icon">
+                                        <input type="password" id="oldPassword" placeholder="Введите старый пароль" required>
+                                        <i class="fas fa-eye toggle-password"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="newPassword">Новый пароль</label>
+                                    <div class="input-with-icon">
+                                        <input type="password" id="newPassword" placeholder="Минимум 6 символов" required minlength="6">
+                                        <i class="fas fa-eye toggle-password"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirmPassword">Подтвердите пароль</label>
+                                    <div class="input-with-icon">
+                                        <input type="password" id="confirmPassword" placeholder="Повторите новый пароль" required minlength="6">
+                                        <i class="fas fa-eye toggle-password"></i>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn-primary">
+                                    <i class="fas fa-save"></i>
+                                    <span>Обновить пароль</span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Выход -->
+                    <div class="card danger">
+                        <div class="card-header">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <h3>Выход из аккаунта</h3>
+                        </div>
+                        <div class="card-body">
+                            <p class="warning-text">После выхода вы будете перенаправлены на главную страницу</p>
+                            <button class="btn-danger" id="logoutBtn">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <span>Выйти из аккаунта</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Мобильная навигация -->
+        <nav class="bottom-nav">
+            <a href="/" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Главная</span>
+            </a>
+            <a href="#orders" class="nav-item active">
+                <i class="fas fa-shopping-bag"></i>
+                <span>Заказы</span>
+            </a>
+            <a href="#track" class="nav-item">
+                <i class="fas fa-truck"></i>
+                <span>Отслеживание</span>
+            </a>
+            <a href="#settings" class="nav-item">
+                <i class="fas fa-user"></i>
+                <span>Профиль</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- Модальное окно деталей заказа -->
+    <div id="orderModal" class="modal-overlay">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>Детали заказа</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Контент загружается динамически -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Уведомления -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="js/profil.js"></script>
+</body>
+</html>

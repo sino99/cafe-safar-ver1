@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Панель администратора | SaFar</title>
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Подключаем Google Fonts для шрифта Outfit -->
+    
+    
+    <style type="text/css">@font-face {font-family:Outfit;font-style:normal;font-weight:300;src:url(/cf-fonts/v/outfit/5.0.11/latin-ext/wght/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Outfit;font-style:normal;font-weight:300;src:url(/cf-fonts/v/outfit/5.0.11/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Outfit;font-style:normal;font-weight:400;src:url(/cf-fonts/v/outfit/5.0.11/latin-ext/wght/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Outfit;font-style:normal;font-weight:400;src:url(/cf-fonts/v/outfit/5.0.11/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Outfit;font-style:normal;font-weight:500;src:url(/cf-fonts/v/outfit/5.0.11/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Outfit;font-style:normal;font-weight:500;src:url(/cf-fonts/v/outfit/5.0.11/latin-ext/wght/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Outfit;font-style:normal;font-weight:600;src:url(/cf-fonts/v/outfit/5.0.11/latin-ext/wght/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Outfit;font-style:normal;font-weight:600;src:url(/cf-fonts/v/outfit/5.0.11/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Outfit;font-style:normal;font-weight:700;src:url(/cf-fonts/v/outfit/5.0.11/latin-ext/wght/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Outfit;font-style:normal;font-weight:700;src:url(/cf-fonts/v/outfit/5.0.11/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}</style>
+    
+    <!-- Альтернатива: используем локальный шрифт Roboto для кириллицы -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap&subset=cyrillic" rel="stylesheet">
+    
+    <style>
+        /* Резервный шрифт на случай, если основной не загрузится */
+        body {
+            font-family: 'Outfit', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+    </style>
+    
+</head>
+<body>
+    <!-- Остальной код без изменений -->
+    <div class="admin-container">
+        <!-- Сайдбар -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1 class="logo">SaFar <span class="logo-admin">Admin</span></h1>
+                <div class="admin-info">
+                    <div class="admin-avatar">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <div class="admin-details">
+                        <span class="admin-name" id="adminName">Администратор</span>
+                        <span class="admin-role">Админ</span>
+                    </div>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item active" data-section="dashboard">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Дашборд</span>
+                    </li>
+                    <li class="nav-item" data-section="orders">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Заказы</span>
+                        <span class="badge" id="newOrdersBadge">0</span>
+                    </li>
+                    <li class="nav-item" data-section="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span>Уведомления</span>
+                        <span class="badge" id="unreadBadge">0</span>
+                    </li>
+                    <li class="nav-item" data-section="analytics">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Аналитика</span>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="/admin/logout" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Выйти
+                </a>
+            </div>
+        </aside>
+        
+        <!-- Основной контент -->
+        <main class="main-content">
+            <header class="main-header">
+                <div class="header-left">
+                    <button class="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h2 id="pageTitle">Дашборд</h2>
+                </div>
+                <div class="header-right">
+                    
+                    <div class="notification-icon" id="notificationBell">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-count">0</span>
+                    </div>
+                    <!-- <div class="current-time" id="currentTime"></div> -->
+                </div>
+            </header>
+            
+            <!-- Контентные секции -->
+            <div class="content-sections">
+                <!-- Дашборд -->
+                <section id="dashboardSection" class="content-section active">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background: #4CAF50;">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="todayOrders">0</h3>
+                                <p>Заказов сегодня</p>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background: #2196F3;">
+                                <i class="fas fa-money-bill-wave"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="todayRevenue">0 TJS</h3>
+                                <p>Выручка сегодня</p>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background: #FF9800;">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="newOrders">0</h3>
+                                <p>Новых заказов</p>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background: #9C27B0;">
+                                <i class="fas fa-bell"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="unreadNotifications">0</h3>
+                                <p>Новых уведомлений</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-row">
+                        <div class="chart-container">
+                            <h3>Статусы заказов</h3>
+                            <div class="chart" id="statusChart">
+                                <div class="chart-placeholder">
+                                    <i class="fas fa-chart-pie"></i>
+                                    <p>Загрузка статистики...</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="recent-orders">
+                            <div class="recent-header">
+                                <h3>Последние заказы</h3>
+                                <a href="#" class="view-all" data-section="orders">Все заказы →</a>
+                            </div>
+                            <div class="orders-list" id="recentOrders">
+                                <!-- Заказы загружаются через JS -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Заказы -->
+                <section id="ordersSection" class="content-section">
+                    <div class="section-header">
+                        <h3>Управление заказами</h3>
+                        <div class="filter-controls">
+                            <select id="statusFilter" class="filter-select">
+                                <option value="все">Все статусы</option>
+                                <option value="новый">Новый</option>
+                                <option value="в обработке">В обработке</option>
+                                <option value="готовится">Готовится</option>
+                                <option value="в пути">В пути</option>
+                                <option value="доставлен">Доставлен</option>
+                                <option value="отменен">Отменен</option>
+                            </select>
+                            <button id="refreshOrders" class="refresh-btn">
+                                <i class="fas fa-sync-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="orders-table-container">
+                        <table class="orders-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Клиент</th>
+                                    <th>Телефон</th>
+                                    <th>Тип</th>
+                                    <th>Товары</th>
+                                    <th>Сумма</th>
+                                    <th>Статус</th>
+                                    <th>Дата</th>
+                                    <th>Действия</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ordersTableBody">
+                                <!-- Заказы загружаются через JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="pagination">
+                        <button id="prevPage" class="page-btn" disabled>
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <span id="currentPage">1</span>
+                        <button id="nextPage" class="page-btn">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </section>
+                
+                <!-- Уведомления -->
+                <section id="notificationsSection" class="content-section">
+                    <div class="section-header">
+                        <h3>Уведомления</h3>
+                        <button id="markAllRead" class="btn-secondary">
+                            <i class="fas fa-check-double"></i> Отметить все как прочитанные
+                        </button>
+                    </div>
+                    
+                    <div class="notifications-list" id="notificationsList">
+                        <!-- Уведомления загружаются через JS -->
+                    </div>
+                </section>
+                
+                <!-- Аналитика -->
+                <section id="analyticsSection" class="content-section">
+                    <div class="analytics-header">
+                        <h3>Аналитика продаж</h3>
+                        <div class="date-range">
+                            <input type="date" id="startDate">
+                            <span>по</span>
+                            <input type="date" id="endDate">
+                            <button id="applyDateRange" class="btn-primary">
+                                Применить
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="analytics-stats">
+                        <div class="analytics-card">
+                            <h4>Общая выручка</h4>
+                            <h2 id="totalRevenue">0 TJS</h2>
+                        </div>
+                        <div class="analytics-card">
+                            <h4>Средний чек</h4>
+                            <h2 id="avgOrderValue">0 TJS</h2>
+                        </div>
+                        <div class="analytics-card">
+                            <h4>Всего заказов</h4>
+                            <h2 id="totalOrders">0</h2>
+                        </div>
+                    </div>
+                    
+                    <div class="analytics-chart">
+                        <h4>Продажи по дням</h4>
+                        <div class="chart-placeholder-large">
+                            <i class="fas fa-chart-bar"></i>
+                            <p>График продаж</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Модальное окно для деталей заказа -->
+    <div id="orderDetailsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Детали заказа <span id="modalOrderId"></span></h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body" id="orderDetailsContent">
+                <!-- Содержимое загружается через JS -->
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/admin.js"></script>
+</body>
+</html>

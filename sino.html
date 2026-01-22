@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Панель Владельца - Sino IT</title>
+  <link rel="stylesheet" href="css/sino.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="sino-container">
+    <!-- Заголовок -->
+    <header class="sino-header">
+      <div class="header-left">
+        <h1><i class="fas fa-crown"></i> Панель Владельца</h1>
+        <p class="header-subtitle">Sino IT - Полный контроль системы</p>
+      </div>
+      <div class="header-right">
+        <div class="user-info">
+          <span id="currentUser">sino</span>
+          <button id="logoutBtn" class="btn-logout">
+            <i class="fas fa-sign-out-alt"></i> Выйти
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Основное содержимое -->
+    <main class="sino-main">
+      <!-- Навигация -->
+      <nav class="sino-nav">
+        <div class="nav-item active" data-tab="users">
+          <i class="fas fa-users"></i>
+          <span>Пользователи</span>
+        </div>
+        <div class="nav-item" data-tab="orders">
+          <i class="fas fa-shopping-cart"></i>
+          <span>Заказы</span>
+        </div>
+        <div class="nav-item" data-tab="stats">
+          <i class="fas fa-chart-line"></i>
+          <span>Статистика</span>
+        </div>
+        <div class="nav-item" data-tab="settings">
+          <i class="fas fa-cog"></i>
+          <span>Настройки</span>
+        </div>
+      </nav>
+
+      <!-- Контент -->
+      <div class="sino-content">
+        <!-- Вкладка Пользователи -->
+        <div id="users-tab" class="tab-content active">
+          <div class="tab-header">
+            <h2><i class="fas fa-users"></i> Управление пользователями</h2>
+            <div class="tab-actions">
+              <button id="refreshUsers" class="btn-refresh">
+                <i class="fas fa-sync-alt"></i> Обновить
+              </button>
+              <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="userSearch" placeholder="Поиск пользователей...">
+              </div>
+            </div>
+          </div>
+          
+          <div class="users-table-container">
+            <table class="users-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Логин</th>
+                  <th>Телефон</th>
+                  <th>Пароль (хеш)</th>
+                  <th>Роль</th>
+                  <th>Дата регистрации</th>
+                  <th>Статус</th>
+                  <th>Действия</th>
+                </tr>
+              </thead>
+              <tbody id="usersTableBody">
+                <!-- Данные загружаются через JavaScript -->
+                <tr>
+                  <td colspan="8" class="loading-cell">
+                    <i class="fas fa-spinner fa-spin"></i> Загрузка пользователей...
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <div class="table-info">
+            <div class="total-info">
+              Всего пользователей: <span id="totalUsers">0</span>
+            </div>
+            <div class="blocked-info">
+              Заблокировано: <span id="blockedUsers">0</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Вкладка Заказы -->
+        <div id="orders-tab" class="tab-content">
+          <div class="tab-header">
+            <h2><i class="fas fa-shopping-cart"></i> Все заказы</h2>
+            <div class="tab-actions">
+              <select id="orderStatusFilter" class="filter-select">
+                <option value="все">Все статусы</option>
+                <option value="новый">Новые</option>
+                <option value="в обработке">В обработке</option>
+                <option value="готовится">Готовятся</option>
+                <option value="в пути">В пути</option>
+                <option value="доставлен">Доставлен</option>
+                <option value="отменен">Отменен</option>
+              </select>
+              <button id="refreshOrders" class="btn-refresh">
+                <i class="fas fa-sync-alt"></i> Обновить
+              </button>
+            </div>
+          </div>
+          
+          <div class="orders-grid" id="ordersGrid">
+            <!-- Заказы загружаются через JavaScript -->
+            <div class="loading-orders">
+              <i class="fas fa-spinner fa-spin"></i> Загрузка заказов...
+            </div>
+          </div>
+          
+          <div class="pagination" id="ordersPagination">
+            <!-- Пагинация заказов -->
+          </div>
+        </div>
+
+        <!-- Вкладка Статистика -->
+        <div id="stats-tab" class="tab-content">
+          <div class="tab-header">
+            <h2><i class="fas fa-chart-line"></i> Статистика и финансы</h2>
+            <div class="period-selector">
+              <select id="statsPeriod" class="filter-select">
+                <option value="today">Сегодня</option>
+                <option value="week">Неделя</option>
+                <option value="month">Месяц</option>
+                <option value="year">Год</option>
+                <option value="all">Все время</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="stats-grid">
+            <!-- Основные метрики -->
+            <div class="stat-card revenue-card">
+              <div class="stat-icon">
+                <i class="fas fa-money-bill-wave"></i>
+              </div>
+              <div class="stat-info">
+                <h3>Общая выручка</h3>
+                <div class="stat-value" id="totalRevenue">0 TJS</div>
+                <div class="stat-change" id="revenueChange">+0%</div>
+              </div>
+            </div>
+            
+            <div class="stat-card orders-card">
+              <div class="stat-icon">
+                <i class="fas fa-shopping-bag"></i>
+              </div>
+              <div class="stat-info">
+                <h3>Всего заказов</h3>
+                <div class="stat-value" id="totalOrders">0</div>
+                <div class="stat-change" id="ordersChange">+0</div>
+              </div>
+            </div>
+            
+            <div class="stat-card avg-card">
+              <div class="stat-icon">
+                <i class="fas fa-chart-bar"></i>
+              </div>
+              <div class="stat-info">
+                <h3>Средний чек</h3>
+                <div class="stat-value" id="avgOrder">0 TJS</div>
+                <div class="stat-change" id="avgChange">+0%</div>
+              </div>
+            </div>
+            
+            <div class="stat-card customers-card">
+              <div class="stat-icon">
+                <i class="fas fa-user-friends"></i>
+              </div>
+              <div class="stat-info">
+                <h3>Уникальных клиентов</h3>
+                <div class="stat-value" id="uniqueCustomers">0</div>
+                <div class="stat-change" id="customersChange">+0</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Графики -->
+          <div class="charts-container">
+            <div class="chart-card">
+              <h3>Выручка по дням (последние 30 дней)</h3>
+              <canvas id="revenueChart"></canvas>
+            </div>
+            
+            <div class="chart-card">
+              <h3>Распределение по статусам</h3>
+              <canvas id="statusChart"></canvas>
+            </div>
+          </div>
+          
+          <!-- Детальная статистика -->
+          <div class="detailed-stats">
+            <div class="stats-table-container">
+              <h3>Ежедневная статистика</h3>
+              <table class="stats-table">
+                <thead>
+                  <tr>
+                    <th>Дата</th>
+                    <th>Заказы</th>
+                    <th>Выручка</th>
+                    <th>Средний чек</th>
+                  </tr>
+                </thead>
+                <tbody id="dailyStatsBody">
+                  <!-- Данные загружаются через JavaScript -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Вкладка Настройки -->
+        <div id="settings-tab" class="tab-content">
+          <div class="tab-header">
+            <h2><i class="fas fa-cog"></i> Настройки системы</h2>
+          </div>
+          
+          <div class="settings-grid">
+            <div class="setting-card">
+              <h3><i class="fas fa-shield-alt"></i> Безопасность</h3>
+              <div class="setting-item">
+                <label>Смена пароля владельца</label>
+                <button class="btn-change-password">Сменить пароль</button>
+              </div>
+              <div class="setting-item">
+                <label>Сессии пользователей</label>
+                <button class="btn-clear-sessions">Очистить все сессии</button>
+              </div>
+            </div>
+            
+            <div class="setting-card">
+              <h3><i class="fas fa-database"></i> База данных</h3>
+              <div class="setting-item">
+                <label>Резервное копирование</label>
+                <button class="btn-backup">Создать backup</button>
+              </div>
+              <div class="setting-item">
+                <label>Очистка старых данных</label>
+                <button class="btn-cleanup">Очистить старые заказы</button>
+              </div>
+            </div>
+            
+            <div class="setting-card">
+              <h3><i class="fas fa-bell"></i> Уведомления</h3>
+              <div class="setting-item">
+                <label>Telegram уведомления</label>
+                <div class="toggle-switch">
+                  <input type="checkbox" id="tgNotifications" checked>
+                  <label for="tgNotifications"></label>
+                </div>
+              </div>
+              <div class="setting-item">
+                <label>Email уведомления</label>
+                <div class="toggle-switch">
+                  <input type="checkbox" id="emailNotifications">
+                  <label for="emailNotifications"></label>
+                </div>
+              </div>
+            </div>
+            
+            <div class="setting-card">
+              <h3><i class="fas fa-info-circle"></i> Информация о системе</h3>
+              <div class="system-info">
+                <p><strong>Версия системы:</strong> 2.0.0</p>
+                <p><strong>База данных:</strong> SQLite</p>
+                <p><strong>Всего заказов:</strong> <span id="systemTotalOrders">0</span></p>
+                <p><strong>Всего пользователей:</strong> <span id="systemTotalUsers">0</span></p>
+                <p><strong>Дата запуска:</strong> 2025</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    
+    <!-- Модальное окно для блокировки пользователя -->
+    <div id="blockModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Блокировка пользователя</h3>
+          <span class="close-modal">&times;</span>
+        </div>
+        <div class="modal-body">
+          <div id="blockUserInfo"></div>
+          <div class="form-group">
+            <label for="blockReason">Причина блокировки</label>
+            <textarea id="blockReason" rows="3" placeholder="Укажите причину блокировки..."></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-secondary close-modal">Отмена</button>
+          <button id="confirmBlock" class="btn-danger">Заблокировать</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Модальное окно для удаления пользователя -->
+    <div id="deleteModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Удаление пользователя</h3>
+          <span class="close-modal">&times;</span>
+        </div>
+        <div class="modal-body">
+          <div class="warning-message">
+            <i class="fas fa-exclamation-triangle"></i>
+            <p><strong>Внимание!</strong> Вы собираетесь полностью удалить пользователя из системы.</p>
+            <p>Это действие удалит:</p>
+            <ul>
+              <li>Аккаунт пользователя</li>
+              <li>Все его заказы</li>
+              <li>Историю заказов</li>
+              <li>Уведомления</li>
+            </ul>
+            <p>Это действие <strong>необратимо</strong>!</p>
+          </div>
+          <div id="deleteUserInfo"></div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-secondary close-modal">Отмена</button>
+          <button id="confirmDelete" class="btn-danger">
+            <i class="fas fa-trash"></i> Удалить навсегда
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Уведомления -->
+    <div id="notificationContainer"></div>
+  </div>
+
+  <!-- Подключаем библиотеки для графиков -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <!-- Основной скрипт панели -->
+  <script src="js/sino.js"></script>
+</body>
+</html>

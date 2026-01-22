@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Регистрация</title>
+  <link rel="stylesheet" href="css/auth.css">
+  <script src="https://kit.fontawesome.com/97ebdf5864.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+   <style>
+        body {
+           background:  url('https://i.gifer.com/embedded/download/GOjC.gif') no-repeat center/cover fixed;
+        }
+    </style>
+  <div class="container">
+    <h2>Регистрация</h2>
+
+    <form id="registerForm" action="/register" method="POST" novalidate>
+      <!-- Логин -->
+      <div class="form-group">
+        <input id="login" name="login" type="text" required placeholder=" " minlength="3" />
+        <label for="login">Логин</label>
+        <i class="fa-solid fa-user"></i>
+      </div>
+
+      <!-- Телефон -->
+      <div class="form-group">
+        <input id="r-phone" name="phone" type="tel" inputmode="tel" required placeholder=" " pattern="[0-9+()\-\s]{5,}" />
+        <label for="r-phone">Номер телефона</label>
+        <i class="fa-solid fa-phone"></i>
+      </div>
+
+      <!-- Пароль -->
+      <div class="form-group">
+        <input id="r-password" name="password" type="password" required placeholder=" " minlength="6" />
+        <label for="r-password">Пароль</label>
+        <i id="togglePassword1" class="fa-solid fa-eye" style="cursor: pointer;"></i>
+      </div>
+
+      <!-- Подтверждение пароля -->
+      <div class="form-group">
+        <input id="r-password2" name="password_confirm" type="password" required placeholder=" " minlength="6" />
+        <label for="r-password2">Подтверждение пароля</label>
+        <i id="togglePassword2" class="fa-solid fa-eye" style="cursor: pointer;"></i>
+      </div>
+
+      <button id="btn" type="submit">Зарегистрироваться</button>
+
+      <p>Уже есть аккаунт? <a class="link" href="login.html">Войти</a></p>
+    </form>
+  </div>
+
+  <script>
+// Проверка совпадения паролей и показ/скрытие
+const form = document.getElementById('registerForm');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const p1 = document.getElementById('r-password').value;
+  const p2 = document.getElementById('r-password2').value;
+
+  if (p1 !== p2) {
+    alert('Пароли не совпадают');
+    return;
+  }
+
+  const formData = new FormData(form);
+  const params = new URLSearchParams();
+  for (const [key, value] of formData) {
+    params.append(key, value);
+  }
+
+  try {
+    const response = await fetch('/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: params
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      window.location.href = '/';
+    } else {
+      alert(data.error || 'Ошибка регистрации');
+    }
+  } catch (err) {
+    alert('Ошибка соединения с сервером');
+  }
+});
+
+// Показать/скрыть пароль (оба поля)
+function togglePassword(inputId, iconId) {
+  const input = document.getElementById(inputId);
+  const icon = document.getElementById(iconId);
+  icon.addEventListener('click', function () {
+    const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+    input.setAttribute('type', type);
+    this.classList.toggle('fa-eye');
+    this.classList.toggle('fa-eye-slash');
+  });
+}
+
+togglePassword('r-password', 'togglePassword1');
+togglePassword('r-password2', 'togglePassword2');
+</script>
+</body>
+</html>

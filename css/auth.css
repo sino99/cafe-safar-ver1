@@ -1,0 +1,315 @@
+/* Базовые стили */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --fg: #ffffff;
+  --fg-dim: rgba(255, 255, 255, 0.8);
+  --border: rgba(255, 255, 255, 0.5);
+  --glass: rgba(0, 0, 0, 0.3);
+  --shadow: rgba(0, 0, 0, 0.8);
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow-x: hidden;
+}
+
+.container {
+  width: min(420px, 94vw);
+  min-width: 280px;
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 30px var(--shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 20px;
+  border: 3px solid var(--border);
+  padding: clamp(15px, 4vw, 28px) clamp(12px, 4vw, 24px);
+  margin: 10px;
+}
+
+h2 {
+  color: var(--fg);
+  font-size: clamp(20px, 5vw, 34px);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: clamp(8px, 2vw, 14px) 0 clamp(6px, 1.5vw, 10px);
+  text-align: center;
+  word-break: break-word;
+}
+
+form { 
+  width: 100%; 
+}
+
+.form-group {
+  position: relative;
+  width: 100%;
+  margin: clamp(16px, 4vw, 26px) 0;
+  border-bottom: 2.5px solid var(--fg);
+}
+
+.form-group input {
+  width: 100%;
+  height: clamp(44px, 10vw, 52px);
+  padding: 0 clamp(36px, 8vw, 40px) 0 clamp(10px, 3vw, 12px);
+  font-size: clamp(0.95rem, 3vw, 1.05rem);
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--fg);
+}
+
+.form-group label {
+  position: absolute;
+  top: 50%;
+  left: clamp(10px, 3vw, 12px);
+  transform: translateY(-50%);
+  font-size: clamp(0.95rem, 3vw, 1.05rem);
+  color: var(--fg);
+  opacity: 0.9;
+  transition: 0.25s ease;
+  pointer-events: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: calc(100% - 40px);
+}
+
+/* Плавающий лейбл */
+.form-group input:focus ~ label,
+.form-group input:not(:placeholder-shown) ~ label {
+  top: -6px;
+  font-size: clamp(0.75rem, 2.5vw, 0.85rem);
+  opacity: 0.85;
+}
+
+.form-group i {
+  position: absolute;
+  top: 50%;
+  right: clamp(8px, 2vw, 10px);
+  transform: translateY(-50%);
+  color: var(--fg);
+  font-size: clamp(1rem, 3vw, 1.1rem);
+}
+
+p {
+  text-align: center;
+  color: var(--fg);
+  margin: clamp(8px, 2vw, 12px) 0 0;
+  font-size: clamp(0.9rem, 3vw, 1rem);
+  line-height: 1.4;
+  padding: 0 5px;
+}
+
+p > a.link {
+  color: var(--fg);
+  font-weight: 700;
+  text-decoration: none;
+  font-size: inherit;
+}
+
+p > a.link:hover {
+  text-decoration: underline;
+  font-style: italic;
+}
+
+#btn {
+  width: 100%;
+  height: clamp(44px, 10vw, 50px);
+  border-radius: 40px;
+  border: none;
+  font-size: clamp(1rem, 3vw, 1.1rem);
+  text-transform: uppercase;
+  font-weight: 700;
+  margin: clamp(4px, 1vw, 6px) 0 clamp(8px, 2vw, 12px);
+  cursor: pointer;
+  transition: transform 0.08s ease, background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+}
+
+#btn:hover {
+  background: var(--glass);
+  color: var(--fg);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+}
+
+#btn:active {
+  transform: translateY(1px);
+}
+
+/* Специальные стили для очень маленьких экранов */
+@media (max-width: 360px) {
+  .form-group input { 
+    font-size: 0.9rem; 
+  }
+  
+  .form-group label { 
+    font-size: 0.9rem; 
+  }
+  
+  h2 {
+    font-size: 18px;
+    letter-spacing: 0.04em;
+  }
+  
+  .container {
+    padding: 12px 10px;
+    border-radius: 16px;
+    border-width: 2px;
+  }
+  
+  .form-group {
+    margin: 14px 0;
+  }
+}
+
+/* Стили для портретной ориентации на мобильных устройствах */
+@media (max-height: 600px) and (orientation: portrait) {
+  body {
+    padding: 10px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    min-height: 100vh;
+    overflow-y: auto;
+  }
+  
+  .container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    margin: 12px 0;
+  }
+  
+  .form-group input {
+    height: 42px;
+  }
+}
+
+/* Стили для горизонтальной ориентации на мобильных устройствах */
+@media (max-width: 768px) and (orientation: landscape) {
+  body {
+    padding: 10px;
+  }
+  
+  .container {
+    max-height: 90vh;
+    overflow-y: auto;
+    margin: 10px 0;
+  }
+  
+  .form-group {
+    margin: 14px 0;
+  }
+  
+  .form-group input {
+    height: 42px;
+  }
+  
+  h2 {
+    padding: 8px 0 6px;
+  }
+}
+
+/* Стили для очень маленьких экранов смартфонов */
+@media (max-width: 320px) {
+  .container {
+    width: 96vw;
+    min-width: 260px;
+    padding: 10px 8px;
+    border-radius: 14px;
+  }
+  
+  h2 {
+    font-size: 17px;
+    padding: 6px 0 4px;
+  }
+  
+  .form-group input {
+    height: 40px;
+    padding: 0 34px 0 8px;
+  }
+  
+  .form-group label {
+    left: 8px;
+  }
+  
+  .form-group i {
+    right: 6px;
+    font-size: 0.9rem;
+  }
+  
+  #btn {
+    height: 42px;
+    font-size: 0.95rem;
+  }
+  
+  p {
+    font-size: 0.85rem;
+  }
+}
+
+/* Поддержка устройств с очень маленькой высотой */
+@media (max-height: 500px) {
+  body {
+    align-items: flex-start;
+    padding-top: 10px;
+  }
+  
+  .container {
+    margin-top: 5px;
+    max-height: 95vh;
+    overflow-y: auto;
+  }
+}
+
+/* Улучшение для устройств с поддержкой hover (не сенсорных) */
+@media (hover: hover) and (pointer: fine) {
+  #btn:hover {
+    background: var(--glass);
+    color: var(--fg);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+  }
+  
+  p > a.link:hover {
+    text-decoration: underline;
+    font-style: italic;
+  }
+}
+
+/* Для сенсорных устройств улучшаем target areas */
+@media (pointer: coarse) {
+  .form-group input {
+    min-height: 48px;
+  }
+  
+  #btn {
+    min-height: 48px;
+  }
+  
+  .form-group i {
+    padding: 12px;
+    margin-right: -12px;
+  }
+}
+
+
+
